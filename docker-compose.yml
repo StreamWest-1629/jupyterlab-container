@@ -14,5 +14,6 @@ services:
       - "${DATASET_LOCALDIR}:${DATASET_DIR}"
       - ".:/workspace"
     env_file: .container.env
+    command: ./jupyterlab
     ports:
       - 8888:8888

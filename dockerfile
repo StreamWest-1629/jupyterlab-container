@@ -30,5 +30,3 @@ ADD requirements.txt /src/
 
 # INITIALIZE CONFIGURATION
 # ADD .user_config /root/.jupyter/user-settings
-
-CMD [ "python3", "-m", "jupyter", "lab", "--ip=0.0.0.0", "--allow-root" ]
