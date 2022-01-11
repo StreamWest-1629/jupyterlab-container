@@ -1,0 +1,7 @@
+*.env
+.virtual_documents
+.ipynb_checkpoints
+dataset
+trained
+.jupyter/migrated
+.jupyter/lab/workspaces

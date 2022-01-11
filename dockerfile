@@ -1,0 +1,34 @@
+FROM nvidia/cuda:11.3.1-cudnn8-devel-ubuntu20.04
+
+ENV DEBIAN_FRONTEND=nointeractive
+ENV TZ=Asia/Tokyo
+
+# USE MIRROR
+# RUN sed -i.bak -r 's!(deb|deb-src) \S+!\1 mirror://mirrors.ubuntu.com/mirrors.txt!' /etc/apt/sources.list
+RUN apt-get update
+RUN apt-get install -y tzdata
+
+# INSTALL NODEJS
+RUN apt-get install -y curl dirmngr apt-transport-https lsb-release ca-certificates
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+RUN apt-get install -y nodejs
+
+RUN apt-get update --fix-missing
+RUN apt-get install -y build-essential git wget tar python3-pip libjpeg-dev graphviz
+
+# INSTALL JUPYTER PYTHON
+RUN python3 -m pip install jupyterlab==3.0.0 && \
+    python3 -m pip install jupyterlab-lsp==3.9.1 && \
+    python3 -m pip install python-lsp-server && \
+    python3 -m pip install jupyterlab-git
+RUN python3 -m jupyter labextension install --no-build '@krassowski/jupyterlab-lsp@3.9.1' && \
+    python3 -m jupyter lab build --dev-build=False --minimize=True
+
+# INSTALL requirements.txt
+ADD requirements.txt /src/
+# RUN python3 -m pip install -r /src/requirements.txt
+
+# INITIALIZE CONFIGURATION
+# ADD .user_config /root/.jupyter/user-settings
+
+CMD [ "python3", "-m", "jupyter", "lab", "--ip=0.0.0.0", "--allow-root" ]

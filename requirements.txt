@@ -1,0 +1,11 @@
+torch
+torchvision
+torchaudio
+torchinfo
+sklearn
+ipython-sql
+pandas
+matplotlib
+pillow
+graphviz
+pydot
