@@ -6,6 +6,6 @@ sklearn
 ipython-sql
 pandas
 matplotlib
-pillow
+Pillow
 graphviz
 pydot
