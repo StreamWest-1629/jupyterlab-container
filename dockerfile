@@ -26,7 +26,7 @@ RUN python3 -m jupyter labextension install --no-build '@krassowski/jupyterlab-l
 
 # INSTALL requirements.txt
 ADD requirements.txt /src/
-# RUN python3 -m pip install -r /src/requirements.txt
+RUN python3 -m pip install -r /src/requirements.txt
 
 # INITIALIZE CONFIGURATION
 # ADD .user_config /root/.jupyter/user-settings
