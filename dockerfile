@@ -16,11 +16,7 @@ RUN apt-get install -y nodejs
 RUN apt-get update --fix-missing
 RUN apt-get install -y build-essential git wget tar python3-pip libjpeg-dev graphviz
 
-# GITHUB ACCOUNT
-ARG GITHUB_USERNAME
-ARG GITHUB_TOKEN
-RUN echo https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com \
-    > /root/.git-credentials
+RUN git config --global credential.helper store
 
 # INSTALL JUPYTER PYTHON
 RUN python3 -m pip install jupyterlab==3.0.0 && \

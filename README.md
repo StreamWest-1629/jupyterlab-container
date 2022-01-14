@@ -15,8 +15,6 @@ The docker container to work ML.
     - `.env` ... environment variables for local path.
         - `DATASET_LOCALDIR` ... The **LOCAL** directory path containing datasets.<br>(example: `D:/datasets`)
         - `DATASET_DIR` ... The remote directory path containing datasets.<br>(example: `/resources/datasets`)
-        - `GITHUB_USERNAME` ... Your github account's username.
-        - `GITHUB_TOKEN` ... The access token to be able to read/write your github repositories.
         ```env
         DATASET_LOCALDIR=D:\datasets
         DATASET_DIR=/resources/datasets
