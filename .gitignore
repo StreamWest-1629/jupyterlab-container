@@ -1,6 +1,7 @@
 *.env
 .virtual_documents
 .ipynb_checkpoints
+*.pyc
 dataset
 trained
 .jupyter/migrated

@@ -1,7 +1,11 @@
-version: "3.0"
+version: "3.8"
 services:
   jupyterlab:
-    build: .
+    build: 
+      context: .
+      args:
+        GITHUB_TOKEN: ${GITHUB_TOKEN}
+        GITHUB_USERNAME: ${GITHUB_USERNAME}
     deploy:
       resources:
         reservations:
@@ -14,6 +18,7 @@ services:
       - "${DATASET_LOCALDIR}:${DATASET_DIR}"
       - ".:/workspace"
     env_file: .container.env
-    command: ./jupyterlab
+    
+    command: python3 -m jupyter lab --ip=0.0.0.0 --allow-root
     ports:
       - 8888:8888
