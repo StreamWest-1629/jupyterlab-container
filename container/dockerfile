@@ -23,8 +23,9 @@ RUN python3 -m jupyter labextension install --no-build '@krassowski/jupyterlab-l
     python3 -m jupyter lab build --dev-build=False --minimize=True
 
 # INSTALL requirements.txt
-ADD requirements/pytorch.txt /src/
-RUN python3 -m pip install -r /src/pytorch.txt
+ARG REQUIREMENTS
+ADD requirements/${REQUIREMENTS} /src/
+RUN python3 -m pip install -r /src/${REQUIREMENTS}
 
 # SET GIT CONFIGRATIONS
 ARG GITHUB_CREDENTIAL=

@@ -4,6 +4,7 @@ services:
     build: 
       context: container
       args:
+        REQUIREMENTS: ${REQUIREMENTS}
         GIT_NAME: ${GIT_NAME}
         GIT_MAIL: ${GIT_MAIL}
         GITHUB_CREDENTIAL: ${GITHUB_CREDENTIAL}
