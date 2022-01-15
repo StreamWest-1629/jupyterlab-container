@@ -11,7 +11,7 @@ The docker container to work ML.
 - Windows10 (21H2) on Intel i5-10600K and nVidia GTX 750Ti
 
 ## How to use
-1. Make `.env` and `container/.env` file in root directory and set path.
+1. Make `.env` and `container/.env` file in root directory and set environment values.
     - `.env` ... environment variables for local path.
         - `DATASET_LOCALDIR` ... The **LOCAL** directory path containing datasets.<br>(example: `D:/datasets`)
         - `DATASET_DIR` ... The remote directory path containing datasets.<br>(example: `/resources/datasets`)
