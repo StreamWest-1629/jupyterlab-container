@@ -2,19 +2,24 @@ version: "3.8"
 services:
   jupyterlab:
     build: 
-      context: .
+      context: container
+      args:
+        GIT_NAME: ${GIT_NAME}
+        GIT_MAIL: ${GIT_MAIL}
+        GITHUB_CREDENTIALS: ${GITHUB_CREDENTIALS}
     deploy:
       resources:
         reservations:
           devices:
             - driver: nvidia
-              count: all
+              count: 1
               capabilities: ["gpu"]
     volumes:
       - ".jupyter:/root/.jupyter"
+      - "./container/credential:/usr/share/doc/git/contrib/credential"
       - "${DATASET_LOCALDIR}:${DATASET_DIR}"
       - ".:/workspace"
-    env_file: .container.env
+    env_file: container/.env
     
     command: python3 -m jupyter lab --ip=0.0.0.0 --allow-root
     ports:
