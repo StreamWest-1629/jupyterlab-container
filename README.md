@@ -26,7 +26,7 @@ The docker container to work ML.
             ```
         
         ```sh
-        $ cat .env
+        $ cat /workspace/.env
         DATASET_LOCALDIR=D:\datasets
         DATASET_DIR=/resources/datasets
         ...
