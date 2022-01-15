@@ -27,10 +27,11 @@ ADD requirements-pytorch.txt /src/
 RUN python3 -m pip install -r /src/requirements-pytorch.txt
 
 # SET GIT CONFIGRATIONS
-ARG GITHUB_CREDENTIALS=
+ARG GITHUB_CREDENTIAL=
+ENV GITHUB_ACCOUNT=${GITHUB_CREDENTIAL}
 ARG GIT_NAME
 ARG GIT_MAIL
-RUN echo "${GITHUB_CREDENTIALS}" > /root/.git-credentials
+RUN printenv GITHUB_ACCOUNT > /root/.git-credentials
 RUN git config --global credential.helper "store --file /root/.git-credentials"
 RUN git config --global user.name "${GIT_NAME}"
 RUN git config --global user.email ${GIT_MAIL}

@@ -15,7 +15,7 @@ The docker container to work ML.
     - `.env` ... environment variables for local path.
         - `DATASET_LOCALDIR` ... The **LOCAL** directory path containing datasets.<br>(example: `D:/datasets`)
         - `DATASET_DIR` ... The remote directory path containing datasets.<br>(example: `/resources/datasets`)
-        - `GITHUB_CREDENTIALS` ... The github credential. optional value.<br>(example: [https://your_username:your_token@github.com]<br> The github token is contain allowance to access repositories.
+        - `GITHUB_CREDENTIAL` ... The github credential. optional value.<br>(example: [https://your_username:your_token@github.com]<br> The github token is contain allowance to access repositories.
         ```env
         DATASET_LOCALDIR=D:\datasets
         DATASET_DIR=/resources/datasets
@@ -26,7 +26,7 @@ The docker container to work ML.
         
 2. Launch container with:
     ```sh
-    $ docker compose build
+    $ docker compose build # WAIT FOR A WHILE
     $ docker compose up
     ```
 

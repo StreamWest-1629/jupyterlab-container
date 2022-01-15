@@ -6,7 +6,7 @@ services:
       args:
         GIT_NAME: ${GIT_NAME}
         GIT_MAIL: ${GIT_MAIL}
-        GITHUB_CREDENTIALS: ${GITHUB_CREDENTIALS}
+        GITHUB_CREDENTIAL: ${GITHUB_CREDENTIAL}
     deploy:
       resources:
         reservations:
