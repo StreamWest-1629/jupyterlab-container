@@ -3,7 +3,6 @@ torchvision
 torchaudio
 torchinfo
 sklearn
-ipython-sql
 importnb
 pandas
 matplotlib
