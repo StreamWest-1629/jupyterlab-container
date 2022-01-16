@@ -3,3 +3,4 @@ jupyterlab-lsp==3.9.1
 jupyterlab-git
 python-lsp-server
 ipython-sql
+bash_kernel

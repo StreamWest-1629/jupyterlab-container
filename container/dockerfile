@@ -18,9 +18,10 @@ RUN apt-get install -y build-essential git libgnome-keyring-dev wget tar python3
 
 # INSTALL JUPYTER PYTHON
 ADD requirements/jupyter.txt /src/
-RUN python3 -m pip install -r /src/jupyter.txt
-RUN python3 -m jupyter labextension install --no-build '@krassowski/jupyterlab-lsp@3.9.1' && \
-    python3 -m jupyter lab build --dev-build=False --minimize=True
+RUN python3 -m pip install -r /src/jupyter.txt && \
+    python3 -m jupyter labextension install --no-build '@krassowski/jupyterlab-lsp@3.9.1' && \
+    python3 -m jupyter lab build --dev-build=False --minimize=True && \
+    python3 -m bash_kernel.install
 
 # INSTALL requirements.txt
 ARG REQUIREMENTS
@@ -32,10 +33,10 @@ ARG GITHUB_CREDENTIAL=
 ENV GITHUB_ACCOUNT=${GITHUB_CREDENTIAL}
 ARG GIT_NAME
 ARG GIT_MAIL
-RUN printenv GITHUB_ACCOUNT > /root/.git-credentials
-RUN git config --global credential.helper "store --file /root/.git-credentials"
-RUN git config --global user.name "${GIT_NAME}"
-RUN git config --global user.email ${GIT_MAIL}
+RUN printenv GITHUB_ACCOUNT > /root/.git-credentials && \
+    git config --global credential.helper "store --file /root/.git-credentials" && \
+    git config --global user.name "${GIT_NAME}" && \
+    git config --global user.email ${GIT_MAIL}
 
 # INITIALIZE CONFIGURATION
 # ADD .user_config /root/.jupyter/user-settings
