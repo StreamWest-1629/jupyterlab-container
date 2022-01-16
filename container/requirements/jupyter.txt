@@ -1,6 +1,9 @@
 jupyterlab==3.0.17
 jupyterlab-lsp==3.9.1
 jupyterlab-git
+jupyterlab_code_formatter
+isort
 python-lsp-server
 ipython-sql
 bash_kernel
+yapf

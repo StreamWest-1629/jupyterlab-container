@@ -7,3 +7,6 @@ trained
 .jupyter/migrated
 .jupyter/lab/workspaces
 .devcontainer
+
+/projects/*
+!/projects/.gitkeep
