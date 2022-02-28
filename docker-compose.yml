@@ -1,5 +1,23 @@
 version: "3.8"
 services:
+  datasetsync:
+    image: elementar/s3-volume
+    command: --force-restore /data s3://${AWS_BUCKET}/dataset/
+    environment:
+      - BACKUP_INTERVAL=2m
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESSKEY}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRETKEY}
+    volumes:
+      - dataset:/data
+  configsync:
+    image: elementar/s3-volume
+    command: --force-restore /data s3://${AWS_BUCKET}/.jupyter/
+    environment:
+      - BACKUP_INTERVAL=2m
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESSKEY}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRETKEY}
+    volumes:
+      - jupyterconfig:/data
   jupyterlab:
     build: 
       context: container
@@ -19,11 +37,17 @@ services:
       - WORKSPACE_DIR=/workspace
       - DATASET_DIR=/datasets
     volumes:
-      - ".jupyter:/root/.jupyter"
+      - "jupyterconfig:/root/.jupyter"
       - ".:/workspace"
-      - "${DATASET_LOCALDIR}:/datasets"
+      - "dataset:/datasets"
     env_file: container/.env
 
     command: python3 -m jupyter lab --ip=0.0.0.0 --allow-root
     ports:
       - 8888:8888
+
+volumes:
+  dataset:
+    driver: local
+  jupyterconfig:
+    driver: local

@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Parameters:
+  ProjectName:
+    Type: String
+    Default: jupyter-container-volumes
+  Profile:
+    Type: String
+
+Resources:
+  Bucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: !Sub "${Profile}-${ProjectName}"
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: TRUE
+        BlockPublicPolicy: TRUE
+        IgnorePublicAcls: TRUE
+        RestrictPublicBuckets: TRUE
+      Tags:
+        - Key: ProjectName
+          Value: !Ref ProjectName
+
+Outputs:
+  tBucketName:
+    Value: !Ref Bucket
